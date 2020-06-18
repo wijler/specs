@@ -4,9 +4,11 @@ year <- sub(".*(2[[:digit:]]{3})-.*", "\\1", meta$Date, perl = TRUE)
 vers <- paste("R package version", meta$Version)
 
 bibentry(
- bibtype="Article",
+ bibtype="TechReport",
  title="An automated approach towards sparse single-equation cointegration modelling",
- journal="Journal of Econometrics",
- year="forthcoming",
- author="S. Smeekes and E. Wijler",
- textVersion="S. Smeekes and E. Wijler (forthcoming) An automated approach towards sparse single-equation cointegration modelling. Journal of Econometrics" )
+ author=c(person("Stephan","Smeekes"),
+          person("Etienne","Wijler"))
+ year=2020
+ institution = "arXive"
+ type = "arXiv e-print",
+ number = "1809.08889")
