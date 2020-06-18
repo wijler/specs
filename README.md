@@ -40,27 +40,16 @@ Sparse single-equation cointegration modelling
 The package `specs` enables sparse and automated estimation of
 single-equation cointegration modelling. To estimate a conditional
 error-correction model (CECM) on the untransformed levels of a
-collection of time series, use the function `specs`. This function
-minimizes the following objective function
-
-$\\sum\_{t=2}^T (\\Delta y\_t - z\_{t-1}^\\prime\\delta - w\_t^\\prime \\pi - d\_t^\\prime \\theta)^2 + \\lambda\_i\\left(\\sum\_i \\omega\_i^\\delta|\\delta\_i| + \\sum\_j \\omega\_j^\\pi|\\pi\_j|\\right) + \\lambda\_g\\left(\\sum\_i \\delta\_i^2\\right)^{1/2}$,
-
-where
-*z*<sub>*t*</sub> = (*y*<sub>*t*</sub>, *x*<sub>*t*</sub><sup>′</sup>)<sup>′</sup>,
-with *y*<sub>*t*</sub> being the dependent variable of interest,
-*w*<sub>*t*</sub> = (*Δ**x*<sub>*t*</sub><sup>′</sup>, *Δ**z*<sub>*t* − 1</sub><sup>′</sup>, …, *Δ**z*<sub>*t* − *p*</sub><sup>′</sup>)<sup>′</sup>
-and *d*<sub>*t*</sub> contains some deterministic terms such as a
-constant and/or a linear trend. Conversion of the data matrix in levels,
-i.e. *Z* = (*z*<sub>1</sub>, …, *z*<sub>*T*</sub>)<sup>′</sup>, is
-performed automatically within the function. The user is free to set the
-number of lagged differences in *w*<sub>*t*</sub> through the input `p`.
-In addition, the inclusion of deterministic (unpenalized) terms in
-*d*<sub>*t*</sub> is governed via the input `deterministics`. When it is
-not desired to explicitly model cointegration, the lagged levels can be
+collection of time series, use the function `specs`. Conversion of the
+data matrix in levels to a CECM representation is performed
+automatically within the function. The user is free to set the number of
+lagged differences to include through the input `p`. In addition, the
+inclusion of deterministic (unpenalized) terms is governed via the input
+`deterministics = c("constant","trend","both","none")`. When it is not
+desired to explicitly model cointegration, the lagged levels can be
 omitted from the model by setting `ADL = TRUE`. This estimates a
 penalized autoregressive distributed lag (ADL) model on the differenced
-data, which essentially corresponds to a choice of
-*λ*<sub>*g*</sub> = ∞.
+data.
 
 Alternatively, the user may choose to pre-transform the data into the
 form of a CECM/ADL, for example to save on computation time in rolling
@@ -68,13 +57,18 @@ window forecast exercises, and use the function `specs_tr` instead. This
 function operates entirely analogous to `specs`, with the exception of
 requiring a differenced dependent variable (`y_d`), the lagged levels of
 the time series (`z_l`) and the required difference of the data (`w`) as
-inputs. Since *w*<sub>*t*</sub> is directly provided to the function,
-the option to set the lag length *p* is omitted. When `ADL=TRUE`, the
-user may omit `z_l` as an input. Note that within this package the
-coefficients corresponding to `z_l` are referred to as `delta`, those
-corresponding to `w` as `pi`, while the numeric object that stacks both
-`delta` and `pi` is referred to as `gamma`. When `ADL=TRUE`, `delta` is
-omitted from the numeric object `gamma` in the output.
+inputs. Since `w` is directly provided to the function, the option to
+set the lag length `p` is omitted. When `ADL=TRUE`, the user may omit
+`z_l` as an input.
+
+Note that within this package the coefficients corresponding to `z_l`
+are referred to as `delta`, those corresponding to `w` as `pi`, and the
+numeric object that stacks both `delta` and `pi` is referred to as
+`gamma`. The deterministic terms are passed to the function outputs as
+`d`, with there coefficients being referred to as `theta`. When
+`ADL=TRUE`, `delta` is omitted from the numeric object `gamma` in the
+output. The naming of objects here is congruent with Smeekes and Wijler
+(2018a), which may serve as a helpful guideline for implementation.
 
 **Penalty**
 
@@ -113,22 +107,21 @@ coefficients are included in the output.
 **Weights**
 
 Finally, specs can be estimated with the use of adaptively weighted
-penalization, i.e. the `\omega_i^\delta` and `\omega_j^\pi` in the
-objective function described above. Automatically generated weighting
-schemes are available via the input `weights = c("ridge","ols","none")`.
-The default option, `"ridge"` constructs the weights via the use of
-initial estimates obtained by ridge regression. Precisely, the weights
-for *δ*<sub>*i*</sub> and *π*<sub>*j*</sub> are constructed as
+penalization. Automatically generated weighting schemes are available
+via the input `weights = c("ridge","ols","none")`. The default option,
+`"ridge"` constructs the weights via the use of initial estimates
+obtained by ridge regression. In detail, the weights for
+*δ*<sub>*i*</sub> and *π*<sub>*j*</sub> are constructed as
 |*δ̂*<sub>*i*</sub>|<sup> − *k*<sub>*δ*</sub></sup> and
 |*π̂*<sub>*j*</sub>|<sup> − *k*<sub>*π*</sub></sup>, respectively. The
 penalty parameter for the ridge regression is automatically chosen by
 TSCV. Alternative options are to automatically generate weights via
 initial ols estimates (`weights = "ols"`) or to refrain from adaptive
-weighting altogether (`weights = "none"`). It is also possible to supply
-a sequence of positive weights directly. Finally, the values for
-*k*<sub>*δ*</sub> and *k*<sub>*π*</sub> can be chosen by the user via
-the equivalently named input options `k_delta` and `k_pi`. The optimal
-values for these parameters are case-dependent, although some
+weighting altogether (`weights = "none"`). Alternatively, it is also
+possible to supply a sequence of positive weights directly. Finally, the
+values for *k*<sub>*δ*</sub> and *k*<sub>*π*</sub> can be chosen by the
+user via the equivalently named input options `k_delta` and `k_pi`. The
+optimal values for these parameters are case-dependent, although some
 theoretical guidance is provided in table 1 of Smeekes and Wijler
 (2018a).
 
