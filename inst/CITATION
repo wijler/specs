@@ -8,7 +8,12 @@ bibentry(
  title="An automated approach towards sparse single-equation cointegration modelling",
  author=c(person("Stephan","Smeekes"),
           person("Etienne","Wijler")),
+<<<<<<< HEAD
  year="2020",
  institution = "arXive",
+=======
+ year= "2020",
+ institution = "arXiv",
+>>>>>>> e70a7c3ee16a7ad74e82988ef055842bcd8374f8
  type = "arXiv e-print",
  number = "1809.08889")
