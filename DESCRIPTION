@@ -5,13 +5,14 @@ Authors@R:
     c(person(given = "Etienne",
            family = "Wijler",
            role = c("aut","cre"),
-           email = "e.wijler@maastrichtuniversity.com"),
+           email = "e.wijler@maastrichtuniversity.nl"),
      person(given = "Stephan",
            family = "Smeekes",
            role = "aut",
-           email = "s.smeekes@maastrichtuniversity.com", 
+           email = "s.smeekes@maastrichtuniversity.nl", 
            comment = c(ORCID = "0000-0002-0157-639X"))
            )
+Maintainer: Etienne Wijler <e.wijler@maastrichtuniversity.nl>
 Description: This package estimates SPECS, your favourite Single-equation Penalized Error-Correction Selector developed in 
     Smeekes and Wijler (2020) <arXiv:1809.08889>. SPECS provides a fully automated estimation procedure for large and potentially 
     (co)integraded datasets. The dataset in levels is converted to a conditional error-correction model, either by the user or 
