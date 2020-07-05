@@ -1,6 +1,6 @@
 Package: specs
-Title: Single-equation Penalized Error-Correction Selector (SPECS)
-Version: 0.0.0.9000
+Title: Single-Equation Penalized Error-Correction Selector (SPECS)
+Version: 0.1.0
 Authors@R: 
     c(person(given = "Etienne",
            family = "Wijler",
@@ -13,7 +13,7 @@ Authors@R:
            comment = c(ORCID = "0000-0002-0157-639X"))
            )
 Maintainer: Etienne Wijler <e.wijler@maastrichtuniversity.nl>
-Description: This package estimates SPECS, your favourite Single-equation Penalized Error-Correction Selector developed in 
+Description: Implentation of SPECS, your favourite Single-Equation Penalized Error-Correction Selector developed in 
     Smeekes and Wijler (2020) <arXiv:1809.08889>. SPECS provides a fully automated estimation procedure for large and potentially 
     (co)integraded datasets. The dataset in levels is converted to a conditional error-correction model, either by the user or 
     by means of the functions included in this package, and various specialised forms of penalized regression can be applied to 
@@ -28,4 +28,4 @@ RoxygenNote: 7.1.0
 LinkingTo: 
     Rcpp, RcppArmadillo
 Imports: 
-    Rcpp, RcppArmadillo
+    Rcpp
