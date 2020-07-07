@@ -31,7 +31,9 @@ arma::vec ridge (const arma::vec y,const arma::mat x,arma::mat XX) {
 
     //Dimensions and initialization
     int n = x.n_cols; arma::vec coef = arma::zeros(n);
-    int t = y.n_elem; int tau = floor(y.n_elem*2/3); //sample size and cutoff
+    int t = y.n_elem;
+    double n_cutoff = y.n_elem*2/3;
+    int tau = floor(n_cutoff); //sample size and cutoff
 
     //Start cross-validation for lambda
     double tol = 1e-10; //minimum condition number allowed
@@ -45,7 +47,7 @@ arma::vec ridge (const arma::vec y,const arma::mat x,arma::mat XX) {
     arma::vec CVs = arma::zeros(6); //store cross-validation results
     arma::vec beta = arma::zeros(n);
     for(int i = 0;i<6;i++) {
-        double lambda_tmp = pow(10,i-1) + lambda_min; //always ensures good conditioning
+        double lambda_tmp = pow(10.0,i-1.0) + lambda_min; //always ensures good conditioning
         lambdas(i) = lambda_tmp; //store lambda
         beta = arma::inv_sympd( xx + lambda_tmp*arma::eye(n,n)) * xy; //Ridge estimator, improve later
         double msfe = sum(pow(y_test - x_test*beta,2));

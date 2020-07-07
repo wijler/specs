@@ -13,12 +13,12 @@ Authors@R:
            comment = c(ORCID = "0000-0002-0157-639X"))
            )
 Maintainer: Etienne Wijler <e.wijler@maastrichtuniversity.nl>
-Description: Implementation of SPECS, your favourite Single-Equation Penalized Error-Correction Selector developed in 
-    Smeekes and Wijler (2020) <arXiv:1809.08889>. SPECS provides a fully automated estimation procedure for large and potentially 
-    (co)integrated datasets. The dataset in levels is converted to a conditional error-correction model, either by the user or 
-    by means of the functions included in this package, and various specialised forms of penalized regression can be applied to 
-    the model. Automated options for initializing and selecting a sequence of penalties, as well as the construction of penalty 
-    weights via an initial estimator, are available. Moreover, the user may choose from a number of pre-specified deterministic 
+Description: Implementation of SPECS, your favourite Single-Equation Penalized Error-Correction Selector developed in
+    Smeekes and Wijler (2020) <arXiv:1809.08889>. SPECS provides a fully automated estimation procedure for large and potentially
+    (co)integrated datasets. The dataset in levels is converted to a conditional error-correction model, either by the user or
+    by means of the functions included in this package, and various specialised forms of penalized regression can be applied to
+    the model. Automated options for initializing and selecting a sequence of penalties, as well as the construction of penalty
+    weights via an initial estimator, are available. Moreover, the user may choose from a number of pre-specified deterministic
     configurations to further simplify the model building process.
 Depends: R (>= 3.5.0)
 License: GPL (>=2)
