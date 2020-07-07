@@ -2,3 +2,6 @@
 ^\.Rproj\.user$
 ^desktop.ini$
 ^README.Rmd$
+^.*\.Rproj$
+^\.Rproj\.user$
+
