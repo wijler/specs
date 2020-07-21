@@ -1,7 +1,11 @@
 ---
-output: md_document
+output: github_document
 ---
 # specs: Single-equation Penalized Error-Correction Selector
+<!-- badges: start -->
+[![CRAN_Version_Badge](http://www.r-pkg.org/badges/version/specs)](https://cran.r-project.org/package=specs)
+[![CRAN_Downloads_Badge](https://cranlogs.r-pkg.org/badges/grand-total/specs)](https://cran.r-project.org/package=specs)
+<!-- badges: end -->
 
 The R package `specs` implements the single-equation penalized error-correction selector proposed in Smeekes and Wijler (2020) as an automated approach towards sparse single-equation cointegration modelling. In addition, the package contains the dataset used in Smeekes and Wijler (2020) to predict Dutch unemployment rates based on Google Trends.
 
