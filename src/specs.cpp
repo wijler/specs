@@ -40,7 +40,7 @@ arma::vec ridge (const arma::vec y,const arma::mat x,arma::mat XX) {
     arma::mat x_train = x.rows(0,tau-1); arma::mat x_test = x.rows(tau,t-1);
     arma::mat xx = x_train.t() * x_train; arma::vec xy = x_train.t() * y_train;
     arma::vec s = svd(xx); //singular values of x'x
-    arma::vec a; a << 0.0 << arma::endr << (max(s)*tol - min(s))/(1-tol) << arma::endr; //vector with (0,LB)
+    arma::vec a({ 0.0, (max(s)*tol - min(s))/(1-tol) });  //vector with (0,LB)
     double lambda_min = max(a); //minimum penalty to ensure good conditioning
     arma::vec lambdas = arma::zeros(6); //initial lambdas
     arma::vec CVs = arma::zeros(6); //store cross-validation results
